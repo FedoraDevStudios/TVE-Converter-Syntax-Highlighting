@@ -1,4 +1,4 @@
-# tve-converter-syntax-highlighting README
+# The Vegetation Engine Converter File Syntax Highlighting
 
 Syntax highlighting for The Vegetation Studio Converter files.
 
