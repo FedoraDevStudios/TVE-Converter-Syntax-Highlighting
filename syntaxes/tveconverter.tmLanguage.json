@@ -1,0 +1,104 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "TVE Converter",
+	"patterns": [
+		{ "include": "#comments" },
+		{ "include": "#keywords" },
+		{ "include": "#operands" },
+		{ "include": "#constants" },
+		{ "include": "#conditionals" },
+		{ "include": "#functionals" },
+		{ "include": "#proptoprop" },
+		{ "include": "#proptonum" },
+		{ "include": "#includes" },
+		{ "include": "#infos" },
+		{ "include": "#none" },
+		{ "include": "#strings" }
+	],
+	"repository": {
+		"comments": {
+			"name": "comment",
+			"begin": "^(//|\\*+)",
+			"end": "$"
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "entity",
+				"match": "\\bendif\\b"
+			}]
+		},
+		"operands": {
+			"name": "meta",
+			"match": "^\\s*(Mesh|Material|Texture|Utility)"
+		},
+		"constants": {
+			"name": "constant",
+			"match": "(GET_|SET_|COPY_|ACTION_)\\w+"
+		},
+		"conditionals": {
+			"name": "variable.language",
+			"match": "^\\s*(if) (\\!*)(\\w+)\\s(.+)$",
+			"captures": {
+				"1": { "name": "entity" },
+				"2": { "name": "invalid" },
+				"3": { "name": "variable.language" },
+				"4": { "name": "string.quoted.double" }
+			}
+		},
+		"functionals": {
+			"name": "punctuation.definition.parameters",
+			"match": "(Set\\w+|PropName)"
+		},
+		"proptoprop": {
+			"name": "invalid",
+			"match": "(_\\w+)\\s(_\\w+)",
+			"captures": {
+				"1": { "name": "entity.other.inherited-class.js" },
+				"2": { "name": "meta.jsx.children" }
+			}
+		},
+		"proptonum": {
+			"name": "invalid",
+			"match": "(_\\w+)\\s((\\d+\\.?\\d*\\s)(\\d+\\.?\\d*\\s)?(\\d+\\.?\\d*\\s)?(\\d+\\.?\\d*)?)",
+			"captures": {
+				"1": { "name": "meta.jsx.children" },
+				"3": { "name": "constant" },
+				"4": { "name": "string.template" },
+				"5": { "name": "meta" },
+				"6": { "name": "meta.jsx.children" }
+			}
+		},
+		"includes": {
+			"name": "invalid",
+			"match": "^\\s*(Include)\\s(.+)",
+			"captures": {
+				"1": { "name": "entity" },
+				"2": { "name": "string.quoted.double" }
+			}
+		},
+		"infos": {
+			"name": "invalid",
+			"match": "^\\s*(Info\\w+)\\s(.*)",
+			"captures": {
+				"1": { "name": "entity" },
+				"2": { "name": "string.quoted.double" }
+			}
+		},
+		"none": {
+			"name": "invalid",
+			"match": "NONE"
+		},
+		"strings": {
+			"name": "string.quoted.double.tveconverter",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.tveconverter",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.tve"
+}

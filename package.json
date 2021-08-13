@@ -1,0 +1,25 @@
+{
+    "name": "tve-converter-syntax-highlighting",
+    "displayName": "TVE Converter Syntax Highlighting",
+    "description": "Syntax highlighting for The Vegetation Studio Converter files",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.59.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "tveconverter",
+            "aliases": ["TVE Converter", "tveconverter"],
+            "extensions": [".tveconverter"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "tveconverter",
+            "scopeName": "source.tve",
+            "path": "./syntaxes/tveconverter.tmLanguage.json"
+        }]
+    }
+}
